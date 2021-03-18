@@ -432,7 +432,7 @@ paths:
         - application/json
       description: Create custom property for contacts
       parameters:
-        - description: 'name - your property,name required, min-3 max-30 . type - Your property type, required, supported types text,number,date,textarea. description - Description for your property, not required, min-3 max-500 ..'
+        - description: 'name - your property name required, min-3 max-30 . type - Your property type, required, supported types text,number,date,textarea. description - Description for your property, not required, min-3 max-500 ..'
           in: body
           name: data
           required: true
