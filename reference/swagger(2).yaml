@@ -1,0 +1,946 @@
+basePath: /v1
+definitions:
+  attribute.CreateAttributeRequestData:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    required:
+      - name
+      - type
+    type: object
+  attribute.CreateCustom:
+    properties:
+      id:
+        example: 1
+        type: integer
+    type: object
+  attribute.DeleteCustom:
+    properties:
+      message:
+        example: Custom property deleted successfully
+        type: string
+    type: object
+  attribute.ErrorResponse:
+    properties:
+      error:
+        properties:
+          field:
+            type: string
+          message:
+            type: string
+        type: object
+    type: object
+  attribute.ListFields:
+    properties:
+      count:
+        type: integer
+      data:
+        properties:
+          field_description:
+            type: string
+          field_name:
+            type: string
+          field_type:
+            type: string
+          field_value:
+            type: string
+          id:
+            type: string
+        type: object
+    type: object
+  attribute.PropertyListRequest:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      search:
+        type: string
+    required:
+      - limit
+      - page
+    type: object
+  attribute.UpdateAttributeRequestData:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+    required:
+      - name
+    type: object
+  contact.BatchContactData:
+    properties:
+      contacts:
+        items:
+          $ref: '#/definitions/contact.BatchCreateContactRequestData'
+        type: array
+      list_id:
+        type: string
+    required:
+      - list_id
+    type: object
+  contact.BatchCreateContactRequestData:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      custom_fields:
+        $ref: '#/definitions/contact.CustomAttributeStruct'
+      department:
+        type: string
+      email:
+        type: string
+      industry:
+        type: string
+      job_title:
+        type: string
+      last_name:
+        type: string
+      lead_source:
+        type: string
+      middle_name:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      phone:
+        type: string
+      salary:
+        type: integer
+      state:
+        type: string
+      zip:
+        type: string
+    required:
+      - email
+    type: object
+  contact.ContactListRequest:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      search:
+        type: string
+    required:
+      - limit
+      - page
+    type: object
+  contact.CreateContactRequestData:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      custom_fields:
+        $ref: '#/definitions/contact.CustomAttributeStruct'
+      department:
+        type: string
+      email:
+        type: string
+      industry:
+        type: string
+      job_title:
+        type: string
+      last_name:
+        type: string
+      lead_source:
+        type: string
+      list_id:
+        type: string
+      middle_name:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      phone:
+        type: string
+      salary:
+        type: integer
+      state:
+        type: string
+      zip:
+        type: string
+    required:
+      - email
+      - list_id
+    type: object
+  contact.CreateContactStruct:
+    properties:
+      id:
+        example: 1
+        type: integer
+    type: object
+  contact.CustomAttributeStruct:
+    properties:
+      enc_id1:
+        type: string
+      enc_id2:
+        type: integer
+    type: object
+  contact.DeleteContactReponse:
+    properties:
+      message:
+        example: Contact deleted successfully
+        type: string
+    type: object
+  contact.ErrorResponse:
+    properties:
+      error:
+        properties:
+          field:
+            type: string
+          message:
+            type: string
+        type: object
+    type: object
+  contact.GetContactDetailsResponse:
+    properties:
+      data:
+        properties:
+          city:
+            type: string
+          country:
+            type: string
+          custom_fields:
+            type: object
+          department:
+            type: string
+          dob:
+            type: string
+          email:
+            type: string
+          firstname:
+            type: string
+          id:
+            type: string
+          industry:
+            type: string
+          job_title:
+            type: string
+          last_name:
+            type: string
+          lead_source:
+            type: string
+          list_id:
+            type: string
+          middle_name:
+            type: string
+          name:
+            type: string
+          organization:
+            type: string
+          phone:
+            type: string
+          salary:
+            type: string
+          state:
+            type: string
+          user_ip:
+            type: string
+          zip:
+            type: string
+        type: object
+    type: object
+  contact.GetContactListResponse:
+    properties:
+      count:
+        type: integer
+      data:
+        properties:
+          city:
+            type: string
+          country:
+            type: string
+          custom_fields:
+            type: object
+          department:
+            type: string
+          dob:
+            type: string
+          email:
+            type: string
+          firstname:
+            type: string
+          id:
+            type: string
+          industry:
+            type: string
+          job_title:
+            type: string
+          last_name:
+            type: string
+          lead_source:
+            type: string
+          middle_name:
+            type: string
+          name:
+            type: string
+          organization:
+            type: string
+          phone:
+            type: string
+          salary:
+            type: string
+          state:
+            type: string
+          user_ip:
+            type: string
+          zip:
+            type: string
+        type: object
+    type: object
+  contact.UpdateContactRequestData:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      custom_fields:
+        $ref: '#/definitions/contact.CustomAttributeStruct'
+      department:
+        type: string
+      industry:
+        type: string
+      job_title:
+        type: string
+      last_name:
+        type: string
+      lead_source:
+        type: string
+      middle_name:
+        type: string
+      name:
+        type: string
+      organization:
+        type: string
+      phone:
+        type: string
+      salary:
+        type: integer
+      state:
+        type: string
+      zip:
+        type: string
+    type: object
+  contactlist.CreateListRequestData:
+    properties:
+      list_type:
+        type: integer
+      name:
+        type: string
+    required:
+      - list_type
+      - name
+    type: object
+  contactlist.ErrorResponse:
+    properties:
+      error:
+        properties:
+          field:
+            type: string
+          message:
+            type: string
+        type: object
+    type: object
+  contactlist.ListDetails:
+    properties:
+      listdetails:
+        type: object
+    type: object
+  contactlist.ListSearchtRequest:
+    properties:
+      limit:
+        type: integer
+      list_type:
+        type: integer
+      page:
+        type: integer
+      search_name:
+        type: string
+      sort_field:
+        type: string
+      sort_order:
+        type: string
+    required:
+      - limit
+      - page
+    type: object
+  contactlist.ListingResponse:
+    properties:
+      count:
+        type: integer
+      data:
+        properties:
+          contact_count:
+            type: integer
+          id:
+            type: integer
+          list_status:
+            type: string
+          list_type:
+            type: string
+          name:
+            type: string
+          open_percentage:
+            type: number
+        type: object
+    type: object
+  contactlist.ResponseCreateList:
+    properties:
+      id:
+        example: 1
+        type: integer
+    type: object
+  contactlist.SuccessMsg:
+    properties:
+      message:
+        example: List deleted successfully
+        type: string
+    type: object
+  contactlist.UpdateListRequestData:
+    properties:
+      name:
+        type: string
+    required:
+      - name
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: 'http://www.swagger.io/support'
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'http://swagger.io/terms/'
+  title: Mailercloud API
+  version: '1.0'
+paths:
+  /contact/property:
+    post:
+      consumes:
+        - application/json
+      description: Create custom property for contacts
+      parameters:
+        - description: 'name - Your name for your property, required, min-3 max-30 . type - Your property type, required, supported types text,number,date,textarea. description - Description for your property, not required, min-3 max-500 ..'
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/attribute.CreateAttributeRequestData'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/attribute.CreateCustom'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Create property
+      tags:
+        - Custom property
+  '/contact/property/{id}':
+    delete:
+      description: Delete custom property for contacts
+      parameters:
+        - description: Custom property Id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/attribute.DeleteCustom'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Delete property
+      tags:
+        - Custom property
+    patch:
+      consumes:
+        - application/json
+      description: Update custom property for contacts
+      parameters:
+        - description: 'name - Your name for your property, required, min-3 max-30 . description - Description for your property, not required, min-3 max-500 '
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/attribute.UpdateAttributeRequestData'
+        - description: Custom Property Id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/attribute.CreateCustom'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Update property
+      tags:
+        - Custom property
+  /contact/property/search:
+    post:
+      description: List custom property for contacts
+      parameters:
+        - description: body data
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/attribute.PropertyListRequest'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/attribute.ListFields'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/attribute.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: List property
+      tags:
+        - Custom property
+  '/contact/search/{id}':
+    post:
+      description: Get contacts in a list
+      parameters:
+        - description: List id
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: body data
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contact.ContactListRequest'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contact.GetContactListResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Get contacts in a list
+      tags:
+        - Contacts
+  /contacts:
+    post:
+      consumes:
+        - application/json
+      description: Create contact
+      parameters:
+        - description: 'emai required,email,max=200 <br> name max=25 <br> middle_name max=25 <br> last_name max=25 <br> country max=50 <br> city max=100 <br> state max=100 <br> phone max=25 <br> zip max=25 <br> industry max=100 <br>organization max=150 <br> department max=100 <br> job_title max=100 <br> salary number,max=30 <br> lead_source max=50 <br>  list_id required <br> custom_fields json  (Text - max=100, Textarea - max=500, Number - Numeric values only, Date - max=10,format=2006-01-02)'
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contact.CreateContactRequestData'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/contact.CreateContactStruct'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Create Contact
+      tags:
+        - Contacts
+  '/contacts/{id}':
+    delete:
+      description: Delete contact
+      parameters:
+        - description: Contact id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contact.DeleteContactReponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Delete contact
+      tags:
+        - Contacts
+    get:
+      description: Get contact details
+      parameters:
+        - description: Contact id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contact.GetContactDetailsResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Get contact details
+      tags:
+        - Contacts
+    put:
+      consumes:
+        - application/json
+      description: Update contact
+      parameters:
+        - description: 'name max=25 <br> middle_name max=25 <br> last_name max=25 <br> country max=50 <br> city max=100 <br> state max=100 <br> phone max=25 <br> zip max=25 <br> industry max=100 <br>organization max=150 <br> department max=100 <br> job_title max=100 <br> salary number,max=30 <br> lead_source max=50 <br> custom_fields json  (Text - max=100, Textarea - max=500, Number - Numeric values only, Date - max=10,format=2006-01-02)'
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contact.UpdateContactRequestData'
+        - description: Contact Id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/contact.CreateContactStruct'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Update Contact
+      tags:
+        - Contacts
+  /contacts/batch:
+    post:
+      consumes:
+        - application/json
+      description: Create Batch Contact
+      parameters:
+        - description: 'list_id required <br> contacts[<br>emai required,email,max=200 <br> name max=25 <br> middle_name max=25 <br> last_name max=25 <br> country max=50 <br> city max=100 <br> state max=100 <br> phone max=25 <br> zip max=25 <br> industry max=100 <br>organization max=150 <br> department max=100 <br> job_title max=100 <br> salary number,max=30 <br> lead_source max=50 <br>  list_id required <br> custom_fields json  (Text - max=100, Textarea - max=500, Number - Numeric values only, Date - max=10,format=2006-01-02)<br>] required'
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contact.BatchContactData'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/contact.CreateContactStruct'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contact.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Create Batch Contact
+      tags:
+        - Contacts
+  /list:
+    post:
+      consumes:
+        - application/json
+      description: 'Your Mailercloud list, also known as your recipient, is where you store and manage all of your contacts.'
+      parameters:
+        - description: 'name - Your name for your list, required, min-3 max-100  .  list_type - Your list type, required, supported types 1 - Normal list, 2 - Supress list.'
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contactlist.CreateListRequestData'
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/contactlist.ResponseCreateList'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Create a new list
+      tags:
+        - List
+  '/list/{id}':
+    delete:
+      consumes:
+        - application/json
+      description: Delete a specific list.
+      parameters:
+        - description: List Id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contactlist.SuccessMsg'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Delete a list.
+      tags:
+        - List
+    get:
+      consumes:
+        - application/json
+      description: Get single list details.
+      parameters:
+        - description: List Id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contactlist.ListingResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Get single list details.
+      tags:
+        - List
+    patch:
+      consumes:
+        - application/json
+      description: Update the details of a specific list.
+      parameters:
+        - description: 'name - Your name for your list, required, min-3 max-100 .'
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contactlist.UpdateListRequestData'
+        - description: List Id
+          in: path
+          name: id
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contactlist.ListDetails'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Update a list.
+      tags:
+        - List
+  /lists/search:
+    post:
+      consumes:
+        - application/json
+      description: 'Get all list and search, filter, sort list.'
+      parameters:
+        - description: 'page - Page number,required,numeric,min-1.  limit - Maximum number of elements to return,required,max-100. list_type - Your list type, required, supported types 1 - Normal list, 2 - Supress list.  search_name - Search list by name.  sort_fiels - Sort list data based on this field, supported [name,contact_count,open_percentage].  sort_order  - Sorting order for sort field supported [asc, ASC, desc, DESC] '
+          in: body
+          name: data
+          required: true
+          schema:
+            $ref: '#/definitions/contactlist.ListSearchtRequest'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/contactlist.ListingResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '401':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+        '404':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/contactlist.ErrorResponse'
+      security:
+        - ApiKeyAuth: []
+      summary: Get all list and search list.
+      tags:
+        - List
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: '2.0'
