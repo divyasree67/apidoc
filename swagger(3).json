@@ -1,0 +1,2493 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server celler server.",
+    "title": "Mailercloud API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "API Support",
+      "url": "http://www.swagger.io/support",
+      "email": "support@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0"
+  },
+  "basePath": "/v1",
+  "paths": {
+    "/available_qutoa_checking": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Available quota checker",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Available quota checker",
+        "parameters": [
+          {
+            "description": "body data",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/campaign.PlanListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign.CampaignFetchResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/campaign/domain/report/{id}": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get statistics for the top-performing email domains in a campaign.",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Get statistics for the top-performing email domains in a campaign.",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Campaign id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "page - Page number,required,numeric,min-1. limit - Maximum number of elements to return,required,max-100. sort_field - Sort list data based on this field, supported [domain,sent,soft_bounce,hard_bounce,opens,clicks,unsubscribe,abuse,spam_complaints]. sort_order - Sorting order for sort field supported [asc, ASC, desc, DESC]",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/campaign.CampaignDomainwiseListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign.CampaignDomainwiseListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/campaign/list": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get all your created campaign details",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Get all your created campaign details",
+        "parameters": [
+          {
+            "description": "date_from - When campaign type draft or duplicate then date_from is modified date else date_from scheduledate. date_to - When campaign type draft or duplicate then date_to is modified date else date_to schedule date.limit - Maximum number of elements to return,required,max-100. page -number,required,numeric,min-1. search_name - Search campaign list by campaign name. sender_email - search campaign list by sender_email. sort_fields - Sort list data based on these fields  [name,schedule_date,open_percentage,modified_date,clicks,opens,sent,unsubscribe]. sort_order - Sorting order for sort field supported [asc, ASC, desc, DESC] .",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/campaign.CampaignListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign.CampaignListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/campaign/testmail/{id}": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Send a test email.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Send a test email.",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Campaign Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "body data",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/campaign.TestmailRequestData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign.TestmailResponse"
+            }
+          },
+          "401": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/campaign/{id}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get single campaign details.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Campaign"
+        ],
+        "summary": "Get single campaign details.",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Campaign Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/campaign.CampaignFetchResponse"
+            }
+          },
+          "401": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/campaign.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contact/property": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Create custom property for contacts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Custom property"
+        ],
+        "summary": "Create property",
+        "parameters": [
+          {
+            "description": "name - Your name for your property, required, min-3 max-30 . type - Your property type, required, supported types text,number,date,textarea. description - Description for your property, not required, min-3 max-500 ..",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/attribute.CreateAttributeRequestData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/attribute.CreateCustom"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contact/property/search": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "List custom property for contacts",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Custom property"
+        ],
+        "summary": "List property",
+        "parameters": [
+          {
+            "description": "body data",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/attribute.PropertyListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/attribute.ListFields"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contact/property/{id}": {
+      "delete": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Delete custom property for contacts",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Custom property"
+        ],
+        "summary": "Delete property",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Custom property Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/attribute.DeleteCustom"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Update custom property for contacts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Custom property"
+        ],
+        "summary": "Update property",
+        "parameters": [
+          {
+            "description": "name - Your name for your property, required, min-3 max-30 . description - Description for your property, not required, min-3 max-500 ",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/attribute.UpdateAttributeRequestData"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Custom Property Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/attribute.CreateCustom"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/attribute.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contact/search/{id}": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get contacts in a list",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get contacts in a list",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "List id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "body data",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact.ContactListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contact.GetContactListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Create contact",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Create Contact",
+        "parameters": [
+          {
+            "description": "emai required,email,max=200 <br> name max=25 <br> middle_name max=25 <br> last_name max=25 <br> country max=50 <br> city max=100 <br> state max=100 <br> phone max=25 <br> zip max=25 <br> industry max=100 <br>organization max=150 <br> department max=100 <br> job_title max=100 <br> salary number,max=30 <br> lead_source max=50 <br>  list_id required <br> custom_fields json  (Text - max=100, Textarea - max=500, Number - Numeric values only, Date - max=10,format=2006-01-02)",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact.CreateContactRequestData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/contact.CreateContactStruct"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/batch": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Create Batch Contact",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Create Batch Contact",
+        "parameters": [
+          {
+            "description": "list_id required <br> contacts[<br>emai required,email,max=200 <br> name max=25 <br> middle_name max=25 <br> last_name max=25 <br> country max=50 <br> city max=100 <br> state max=100 <br> phone max=25 <br> zip max=25 <br> industry max=100 <br>organization max=150 <br> department max=100 <br> job_title max=100 <br> salary number,max=30 <br> lead_source max=50 <br>  list_id required <br> custom_fields json  (Text - max=100, Textarea - max=500, Number - Numeric values only, Date - max=10,format=2006-01-02)<br>] required",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact.BatchContactData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/contact.CreateContactStruct"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get contact details",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get contact details",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Contact id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contact.GetContactDetailsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Update contact",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Update Contact",
+        "parameters": [
+          {
+            "description": "name max=25 <br> middle_name max=25 <br> last_name max=25 <br> country max=50 <br> city max=100 <br> state max=100 <br> phone max=25 <br> zip max=25 <br> industry max=100 <br>organization max=150 <br> department max=100 <br> job_title max=100 <br> salary number,max=30 <br> lead_source max=50 <br> custom_fields json  (Text - max=100, Textarea - max=500, Number - Numeric values only, Date - max=10,format=2006-01-02)",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contact.UpdateContactRequestData"
+            }
+          },
+          {
+            "type": "string",
+            "description": "Contact Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/contact.CreateContactStruct"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Delete contact",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Delete contact",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Contact id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contact.DeleteContactReponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contact.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/list": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Your Mailercloud list, also known as your recipient, is where you store and manage all of your contacts.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "List"
+        ],
+        "summary": "Create a new list",
+        "parameters": [
+          {
+            "description": "name - Your name for your list, required, min-3 max-100  .  list_type - Your list type, required, supported types 1 - Normal list, 2 - Supress list.",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactlist.CreateListRequestData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ResponseCreateList"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/list/{id}": {
+      "get": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get single list details.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "List"
+        ],
+        "summary": "Get single list details.",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "List Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ListingResponse"
+            }
+          },
+          "401": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Delete a specific list.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "List"
+        ],
+        "summary": "Delete a list.",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "List Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contactlist.SuccessMsg"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Update the details of a specific list.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "List"
+        ],
+        "summary": "Update a list.",
+        "parameters": [
+          {
+            "description": "name - Your name for your list, required, min-3 max-100 .",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactlist.UpdateListRequestData"
+            }
+          },
+          {
+            "type": "string",
+            "description": "List Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ListDetails"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/lists/search": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "Get all list and search, filter, sort list.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "List"
+        ],
+        "summary": "Get all list and search list.",
+        "parameters": [
+          {
+            "description": "page - Page number,required,numeric,min-1.  limit - Maximum number of elements to return,required,max-100. list_type - Your list type, required, supported types 1 - Normal list, 2 - Supress list.  search_name - Search list by name.  sort_fiels - Sort list data based on this field, supported [name,contact_count,open_percentage].  sort_order  - Sorting order for sort field supported [asc, ASC, desc, DESC] ",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/contactlist.ListSearchtRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ListingResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/contactlist.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/segment/search": {
+      "post": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "description": "List segment",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Segment"
+        ],
+        "summary": "List segment",
+        "parameters": [
+          {
+            "description": "page - Page number,required,numeric,min-1. limit - Maximum number of elements to return,required,max-100.  search - Search segment by name. sort_field - Sort list data based on this field, supported [name,active_count]. sort_order - Sorting order for sort field supported [asc, ASC, desc, DESC]",
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/segment.SegmentListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/segment.SegmentListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/segment.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "attribute.CreateAttributeRequestData": {
+      "type": "object",
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "attribute.CreateCustom": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "attribute.DeleteCustom": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Custom property deleted successfully"
+        }
+      }
+    },
+    "attribute.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "attribute.ListFields": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "field_description": {
+              "type": "string"
+            },
+            "field_name": {
+              "type": "string"
+            },
+            "field_type": {
+              "type": "string"
+            },
+            "field_value": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "attribute.PropertyListRequest": {
+      "type": "object",
+      "required": [
+        "limit",
+        "page"
+      ],
+      "properties": {
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "search": {
+          "type": "string"
+        }
+      }
+    },
+    "attribute.UpdateAttributeRequestData": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "campaign.CampaignDomainwiseListRequest": {
+      "type": "object",
+      "required": [
+        "limit",
+        "page"
+      ],
+      "properties": {
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "sort_field": {
+          "type": "string"
+        },
+        "sort_order": {
+          "type": "string"
+        }
+      }
+    },
+    "campaign.CampaignDomainwiseListResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "abuse": {
+              "type": "string"
+            },
+            "abuse_pct": {
+              "type": "string"
+            },
+            "clicks": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "string"
+            },
+            "hard_bounce": {
+              "type": "string"
+            },
+            "opens": {
+              "type": "string"
+            },
+            "opens_pct": {
+              "type": "string"
+            },
+            "sent": {
+              "type": "string"
+            },
+            "sent_pct": {
+              "type": "string"
+            },
+            "soft_bounce": {
+              "type": "string"
+            },
+            "soft_bounce_pct": {
+              "type": "string"
+            },
+            "spam_complaints": {
+              "type": "string"
+            },
+            "spam_complaints_pct": {
+              "type": "string"
+            },
+            "unsubscribe": {
+              "type": "string"
+            },
+            "unsubscribe_pct": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "campaign.CampaignFetchResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "blacklistDetails": {
+              "type": "object"
+            },
+            "brokenLinks": {
+              "type": "object"
+            },
+            "content_type": {
+              "type": "string"
+            },
+            "conversions": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            },
+            "created_date": {
+              "type": "string"
+            },
+            "email_preheader": {
+              "type": "string"
+            },
+            "finish_time": {
+              "type": "string"
+            },
+            "html": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "mailing_preference": {
+              "type": "string"
+            },
+            "modified_date": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "pauseRules": {
+              "type": "object",
+              "properties": {
+                "pause_condition": {
+                  "type": "string"
+                },
+                "pause_criteria": {
+                  "type": "string"
+                },
+                "pause_limit": {
+                  "type": "string"
+                },
+                "pause_target": {
+                  "type": "string"
+                },
+                "pause_unit": {
+                  "type": "string"
+                },
+                "wait_time": {
+                  "type": "string"
+                }
+              }
+            },
+            "pause_message": {
+              "type": "string"
+            },
+            "permission_reminder": {
+              "type": "string"
+            },
+            "plain_text": {
+              "type": "string"
+            },
+            "recepiant": {
+              "type": "object",
+              "properties": {
+                "list_contact_count": {
+                  "type": "integer"
+                },
+                "listsnames": {
+                  "type": "string"
+                },
+                "segments": {
+                  "type": "string"
+                },
+                "segments_count": {
+                  "type": "integer"
+                },
+                "suppress_lists_count": {
+                  "type": "integer"
+                },
+                "supresslists": {
+                  "type": "integer"
+                }
+              }
+            },
+            "reply_email": {
+              "type": "string"
+            },
+            "reportSummary": {
+              "type": "object",
+              "properties": {
+                "abuse": {
+                  "type": "integer"
+                },
+                "abuse_percentage": {
+                  "type": "string"
+                },
+                "clicks": {
+                  "type": "integer"
+                },
+                "clicks_percentage": {
+                  "type": "string"
+                },
+                "conversions": {
+                  "type": "integer"
+                },
+                "conversions_percentage": {
+                  "type": "string"
+                },
+                "hard_bounce": {
+                  "type": "integer"
+                },
+                "open_percentage": {
+                  "type": "string"
+                },
+                "opens": {
+                  "type": "integer"
+                },
+                "queue": {
+                  "type": "integer"
+                },
+                "queue_percentage": {
+                  "type": "string"
+                },
+                "queued_total": {
+                  "type": "integer"
+                },
+                "sent": {
+                  "type": "integer"
+                },
+                "sent_percentage": {
+                  "type": "string"
+                },
+                "soft_bounce": {
+                  "type": "integer"
+                },
+                "spam": {
+                  "type": "integer"
+                },
+                "spam_percentage": {
+                  "type": "string"
+                },
+                "unsubscribe": {
+                  "type": "integer"
+                },
+                "unsubscribe_percentage": {
+                  "type": "string"
+                }
+              }
+            },
+            "report_spam": {
+              "type": "string"
+            },
+            "rule": {
+              "type": "object",
+              "properties": {
+                "contacts_order": {
+                  "type": "string"
+                },
+                "limit": {
+                  "type": "string"
+                }
+              }
+            },
+            "scheduledDate": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "timezone": {
+                  "type": "string"
+                }
+              }
+            },
+            "sender": {
+              "type": "object",
+              "properties": {
+                "sender_email": {
+                  "type": "string"
+                },
+                "sender_id": {
+                  "type": "string"
+                },
+                "sender_name": {
+                  "type": "string"
+                }
+              }
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "status_change_date": {
+              "type": "string"
+            },
+            "subject": {
+              "type": "string"
+            },
+            "timeRule": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "string"
+                },
+                "is_enabled": {
+                  "type": "boolean"
+                },
+                "limit": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                }
+              }
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "campaign.CampaignListRequest": {
+      "type": "object",
+      "required": [
+        "limit",
+        "page"
+      ],
+      "properties": {
+        "date_from": {
+          "type": "string"
+        },
+        "date_to": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "search": {
+          "type": "string"
+        },
+        "sender_email": {
+          "type": "string"
+        },
+        "sort_field": {
+          "type": "string"
+        },
+        "sort_order": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "campaign.CampaignListResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "blacklistDetails": {
+              "type": "object"
+            },
+            "brokenLinks": {
+              "type": "object"
+            },
+            "content_type": {
+              "type": "string"
+            },
+            "conversions": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            },
+            "created_date": {
+              "type": "string"
+            },
+            "email_preheader": {
+              "type": "string"
+            },
+            "finish_time": {
+              "type": "string"
+            },
+            "html": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "mailing_preference": {
+              "type": "string"
+            },
+            "modified_date": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "pauseRules": {
+              "type": "object",
+              "properties": {
+                "pause_condition": {
+                  "type": "string"
+                },
+                "pause_criteria": {
+                  "type": "string"
+                },
+                "pause_limit": {
+                  "type": "string"
+                },
+                "pause_target": {
+                  "type": "string"
+                },
+                "pause_unit": {
+                  "type": "string"
+                },
+                "wait_time": {
+                  "type": "string"
+                }
+              }
+            },
+            "pause_message": {
+              "type": "string"
+            },
+            "permission_reminder": {
+              "type": "string"
+            },
+            "plain_text": {
+              "type": "string"
+            },
+            "recepiant": {
+              "type": "object",
+              "properties": {
+                "list_contact_count": {
+                  "type": "integer"
+                },
+                "listsnames": {
+                  "type": "string"
+                },
+                "segments": {
+                  "type": "string"
+                },
+                "segments_count": {
+                  "type": "integer"
+                },
+                "suppress_lists_count": {
+                  "type": "integer"
+                },
+                "supresslists": {
+                  "type": "integer"
+                }
+              }
+            },
+            "reply_email": {
+              "type": "string"
+            },
+            "reportSummary": {
+              "type": "object",
+              "properties": {
+                "abuse": {
+                  "type": "integer"
+                },
+                "abuse_percentage": {
+                  "type": "string"
+                },
+                "clicks": {
+                  "type": "integer"
+                },
+                "clicks_percentage": {
+                  "type": "string"
+                },
+                "conversions": {
+                  "type": "integer"
+                },
+                "conversions_percentage": {
+                  "type": "string"
+                },
+                "hard_bounce": {
+                  "type": "integer"
+                },
+                "open_percentage": {
+                  "type": "string"
+                },
+                "opens": {
+                  "type": "integer"
+                },
+                "queue": {
+                  "type": "integer"
+                },
+                "queue_percentage": {
+                  "type": "string"
+                },
+                "queued_total": {
+                  "type": "integer"
+                },
+                "sent": {
+                  "type": "integer"
+                },
+                "sent_percentage": {
+                  "type": "string"
+                },
+                "soft_bounce": {
+                  "type": "integer"
+                },
+                "spam": {
+                  "type": "integer"
+                },
+                "spam_percentage": {
+                  "type": "string"
+                },
+                "unsubscribe": {
+                  "type": "integer"
+                },
+                "unsubscribe_percentage": {
+                  "type": "string"
+                }
+              }
+            },
+            "report_spam": {
+              "type": "string"
+            },
+            "rule": {
+              "type": "object",
+              "properties": {
+                "contacts_order": {
+                  "type": "string"
+                },
+                "limit": {
+                  "type": "string"
+                }
+              }
+            },
+            "scheduledDate": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string"
+                },
+                "timezone": {
+                  "type": "string"
+                }
+              }
+            },
+            "sender": {
+              "type": "object",
+              "properties": {
+                "sender_email": {
+                  "type": "string"
+                },
+                "sender_id": {
+                  "type": "string"
+                },
+                "sender_name": {
+                  "type": "string"
+                }
+              }
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "status_change_date": {
+              "type": "string"
+            },
+            "subject": {
+              "type": "string"
+            },
+            "timeRule": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "string"
+                },
+                "is_enabled": {
+                  "type": "boolean"
+                },
+                "limit": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                }
+              }
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "campaign.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "campaign.PlanListRequest": {
+      "type": "object",
+      "required": [
+        "is_schedule",
+        "total"
+      ],
+      "properties": {
+        "is_schedule": {
+          "type": "integer"
+        },
+        "schedule_date": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "campaign.TestmailRequestData": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "campaign.TestmailResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Test mail was successfully sent"
+        }
+      }
+    },
+    "contact.BatchContactData": {
+      "type": "object",
+      "required": [
+        "list_id"
+      ],
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contact.BatchCreateContactRequestData"
+          }
+        },
+        "list_id": {
+          "type": "string"
+        }
+      }
+    },
+    "contact.BatchCreateContactRequestData": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "custom_fields": {
+          "$ref": "#/definitions/contact.CustomAttributeStruct"
+        },
+        "department": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "job_title": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "lead_source": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "contact.ContactListRequest": {
+      "type": "object",
+      "required": [
+        "limit",
+        "page"
+      ],
+      "properties": {
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "search": {
+          "type": "string"
+        }
+      }
+    },
+    "contact.CreateContactRequestData": {
+      "type": "object",
+      "required": [
+        "email",
+        "list_id"
+      ],
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "custom_fields": {
+          "$ref": "#/definitions/contact.CustomAttributeStruct"
+        },
+        "department": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "job_title": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "lead_source": {
+          "type": "string"
+        },
+        "list_id": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "contact.CreateContactStruct": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "contact.CustomAttributeStruct": {
+      "type": "object",
+      "properties": {
+        "enc_id1": {
+          "type": "string"
+        },
+        "enc_id2": {
+          "type": "integer"
+        }
+      }
+    },
+    "contact.DeleteContactReponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Contact deleted successfully"
+        }
+      }
+    },
+    "contact.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "contact.GetContactDetailsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "custom_fields": {
+              "type": "object"
+            },
+            "department": {
+              "type": "string"
+            },
+            "dob": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "firstname": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "industry": {
+              "type": "string"
+            },
+            "job_title": {
+              "type": "string"
+            },
+            "last_name": {
+              "type": "string"
+            },
+            "lead_source": {
+              "type": "string"
+            },
+            "list_id": {
+              "type": "string"
+            },
+            "middle_name": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "organization": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "salary": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "user_ip": {
+              "type": "string"
+            },
+            "zip": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "contact.GetContactListResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "custom_fields": {
+              "type": "object"
+            },
+            "department": {
+              "type": "string"
+            },
+            "dob": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "firstname": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "industry": {
+              "type": "string"
+            },
+            "job_title": {
+              "type": "string"
+            },
+            "last_name": {
+              "type": "string"
+            },
+            "lead_source": {
+              "type": "string"
+            },
+            "middle_name": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "organization": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "salary": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "user_ip": {
+              "type": "string"
+            },
+            "zip": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "contact.UpdateContactRequestData": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "custom_fields": {
+          "$ref": "#/definitions/contact.CustomAttributeStruct"
+        },
+        "department": {
+          "type": "string"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "job_title": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "lead_source": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "salary": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "contactlist.CreateListRequestData": {
+      "type": "object",
+      "required": [
+        "list_type",
+        "name"
+      ],
+      "properties": {
+        "list_type": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "contactlist.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "contactlist.ListDetails": {
+      "type": "object",
+      "properties": {
+        "listdetails": {
+          "type": "object"
+        }
+      }
+    },
+    "contactlist.ListSearchtRequest": {
+      "type": "object",
+      "required": [
+        "limit",
+        "page"
+      ],
+      "properties": {
+        "limit": {
+          "type": "integer"
+        },
+        "list_type": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "search_name": {
+          "type": "string"
+        },
+        "sort_field": {
+          "type": "string"
+        },
+        "sort_order": {
+          "type": "string"
+        }
+      }
+    },
+    "contactlist.ListingResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "contact_count": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "list_status": {
+              "type": "string"
+            },
+            "list_type": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "open_percentage": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "contactlist.ResponseCreateList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "contactlist.SuccessMsg": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "List deleted successfully"
+        }
+      }
+    },
+    "contactlist.UpdateListRequestData": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "segment.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "segment.SegmentListRequest": {
+      "type": "object",
+      "required": [
+        "limit",
+        "page"
+      ],
+      "properties": {
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "search": {
+          "type": "string"
+        },
+        "sort_field": {
+          "type": "string"
+        },
+        "sort_order": {
+          "type": "string"
+        }
+      }
+    },
+    "segment.SegmentListResponse": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "active_count": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "list": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
