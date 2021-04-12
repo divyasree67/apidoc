@@ -127,7 +127,7 @@
             "ApiKeyAuth": []
           }
         ],
-        "description": "Get all your created campaign details",
+        "description": "Get all your created campaign details.g",
         "produces": [
           "application/json"
         ],
