@@ -127,7 +127,7 @@
             "ApiKeyAuth": []
           }
         ],
-        "description": "Get all your created campaign details.gcd",
+        "description": "Get all your created campaign details.gcdn",
         "produces": [
           "application/json"
         ],
